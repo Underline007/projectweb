@@ -1,0 +1,8 @@
+{% form_theme studentmanagerForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container col-md-6 mt-3 text-center">
+   <h2 class="text text-success mb-3">Add new studentmanager</h2>
+   {{ form (studentmanagerForm) }}
+</div>
+{% endblock %}

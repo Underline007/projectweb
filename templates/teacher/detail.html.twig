@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-6 mt-3">
+    <div class="row">
+        <div class="col">
+        <img src="{{ teacher.image}}" width="400" height="400">
+        </div>
+        <div class="col">
+        <h1>teacher Name: {{ teacher.Name}}</h1>
+        <h2>teacher ID: {{ teacher.tid}}</h2>
+        <h2>Birthday: {{teacher.Birthday | date('d/m/Y')}}</h2>
+        <h2>Subject: </h2>
+        {% for subject  in teacher.subjects %}
+            <h4 class="text text-primary">{{subject.Name}}</h4>
+        {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-6 mt-5">
+   <div class="row">
+      <div class="col text-center mt-3">
+         <h1 class="text text-success">{{ major.Majorname }}</h1>
+         <h2>Majorid: {{ major.Majorid }} </h2>
+         <h2>Trainingtime: {{ major.Trainingtime }} Year</h2>
+         <h2>Trainingsystem: {{ major.Trainingsystem }}</h2>
+         <h2>Studentmanager:
+					</h2>
+					{% for studentmanagers  in major.studentmanagers %}
+						<h4 class="text text-primary">{{studentmanagers.Name}}</h4>
+					{% endfor %}
+      </div>
+   </div>
+</div>
+{% endblock %}

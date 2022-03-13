@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="container col-md-6 mt-5">
+		<div class="row">
+			<div class="col text-center mt-3">
+				<div class="col">
+					<img src="{{ studentmanager.image}}" width="400" height="400">
+				</div>
+				<div class="col">
+					<h1 class="text text-success">{{ studentmanager.Name }}</h1>
+					<h2>Birthday:
+						{{ studentmanager.Birthday | date('d-m-Y') }}
+					</h2>
+					<h2>Gender:
+						{{ studentmanager.Gender }}</h2>
+					<h2>Address:
+						{{ studentmanager.Address }}</h2>
+					<h2>
+					{% for major  in studentmanager.major %}
+						<h4 class="text text-primary">{{major.Majorname}}</h4>
+					{% endfor %}
+					</h2>
+               <h2>
+						<a href="{{path('studentmanager_index')}}" class="btn btn-success">Back</a></h2>
+				</div>
+			</div>
+		</div>
+	{% endblock %}

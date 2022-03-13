@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container col-md-6 mt-5 text-center">
+{#code de hien thi flash message duoc gui toi front end#}
+<div class="container col-md-6">
+{% for flash in app.flashes('Success') %}
+    <p class="alert alert-primary">{{flash}}</p>
+{% endfor %}
+{% for flash in app.flashes('Error') %}
+    <p class="alert alert-danger">{{flash}}</p>
+{% endfor %}
+</div>
+<h1 class="text text-primary">teacher List</h1>
+<a href="{{path('teacher_add')}}" class="btn btn-success">Add New teacher</a>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Teacher Name
+                <a href="{{path('sort_title_asc')}}">
+                <img src="{{asset('images/up.png')}}" width="20" height="20">
+                </a>
+                <a href="{{path('sort_title_desc')}}">
+                <img src="{{asset('images/down.jpg')}}" width="20" height="20">
+                </a>
+                </td>
+                <td>teacher Image</td>
+                <td>Menu</td>
+            </tr>
+        </thead>
+        {% for teacher in teachers %}
+            <tbody>
+            <tr>
+                <td>{{teacher.Tid}}</td>
+                <td>{{teacher.Name}}</td>
+                <td>
+                <a href="{{ path('teacher_detail', {'id': teacher.id})}}">
+                <img src="{{ teacher.image}}" width="100" height="100">
+                </a>
+                </td>
+                <td><a href="{{path('teacher_edit', {'id': teacher.id})}}" class="btn btn-warning">Edit</a>
+                   <a href="{{ path('teacher_delete', {'id': teacher.id})}}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container col-md-9 mt-7 text-center">
+{#code de hien thi flash message duoc gui toi front end#}
+<div class="container col-md-6">
+{% for flash in app.flashes('Success') %}
+    <p class="alert alert-primary">{{flash}}</p>
+{% endfor %}
+{% for flash in app.flashes('Error') %}
+    <p class="alert alert-danger">{{flash}}</p>
+{% endfor %}
+</div>
+<h1 class="text text-primary">Subject List</h1>
+<a href="{{path('subject_add')}}" class="btn btn-success">Add New Subject</a>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Subject ID
+                <a href="{{path('sort_id_asc')}}">
+                <img src="{{asset('images/up.png')}}" width="20" height="20">
+                </a>
+                <a href="{{path('sort_id_desc')}}">
+                <img src="{{asset('images/down.jpg')}}" width="20" height="20">
+                </a></td>
+                <td>Subject Image</td>
+                <td>Teachers</td>
+                <td>Menu</td>
+            </tr>
+        </thead>
+        {% for subject in subjects %}
+            <tbody>
+            <tr>
+                <td>{{subject.id}}</td>
+                <td>{{subject.Name}}
+                </td>
+                
+                <td>
+                <a href="{{ path('subject_detail', {'id': subject.id})}}">
+                <img src="{{ subject.image}}" width="100" height="100">
+                </a>
+                </td>
+                <td  class="">
+        {% for teacher  in subject.teachers %}
+        <nav class=" justify-content-center|justify-content-end   ">
+        <a class="text-decoration-none" href="{{path('teacher_detail', {'id': teacher.id})}}">{{teacher.Name}}
+        </a>
+        
+        </nav>
+            
+        {% endfor %}</td>
+                <td><a href="{{path('subject_edit',{'id':subject.id})}}" class="btn btn-warning">Edit</a>
+                    <a href="{{path('subject_delete',{'id':subject.id})}}" class="btn btn-danger" 
+                    onclick="return confirm('Are you sure to delete this book ?');">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        
+    </table>
+</div>
+{% endblock %}

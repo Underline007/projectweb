@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Major
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-6 mt-5 text-center">
+	<div class="container col-md-4">
+    {% for flash in app.flashes('Success') %}
+        <p class="alert alert-warning">{{ flash }}</p>
+    {% endfor %}
+    {% for flash in app.flashes('Error') %}
+        <p class="alert alert-danger">{{ flash }}</p>
+    {% endfor %}
+</div>	
+		<div class="container col-md-4">
+			{% for flash in app.flashes('Success') %}
+				<p class="alert alert-warning">{{ flash }}</p>
+			{% endfor %}
+			{% for flash in app.flashes('Error') %}
+				<p class="alert alert-danger">{{ flash }}</p>
+			{% endfor %}
+		</div>
+		<h1 class="text text-success">Major List</h1>
+		<a href="{{ path ('major_add')}}" class="btn btn-success">Add major</a>
+		<table class="table table-primary mt-3">
+			<thead>
+				<tr>
+					<th>Major Id</th>
+					<th>Major Name</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for major in majors %}
+					<tr>
+						<td>{{ major.Majorid }}</td>
+						<td> <a href="{{ path ('major_detail', {'id' : major.id })}}"> {{ major.Majorname }}</a></td>
+						<td>
+							<a href="{{ path ('major_edit', {'id' : major.id })}}" class="btn btn-warning">Edit</a>
+							<a href="{{ path ('major_delete', {'id' : major.id })}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this book ?');">Delete</a> 
+						</td>
+						
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Studentmanager
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-6 mt-5 text-center">
+		<div class="container col-md-4">
+			{% for flash in app.flashes('Success') %}
+				<p class="alert alert-warning">{{ flash }}</p>
+			{% endfor %}
+			{% for flash in app.flashes('Error') %}
+				<p class="alert alert-danger">{{ flash }}</p>
+			{% endfor %}
+		</div>
+		<div class="container col-md-4">
+			{% for flash in app.flashes('Success') %}
+				<p class="alert alert-warning">{{ flash }}</p>
+			{% endfor %}
+			{% for flash in app.flashes('Error') %}
+				<p class="alert alert-danger">{{ flash }}</p>
+			{% endfor %}
+		</div>
+		<h1 class="text text-success">Studentmanager List</h1>
+		<a href="{{ path ('studentmanager_add')}}" class="btn btn-success">Add Studentmanagers</a>
+		<table class="table table-primary mt-3">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name
+						<a class="text-decoration-none" href="{{ path('sort_name_asc')}}">
+							<img src="{{asset('images/up.png') }}" width="20" height="20">
+						</a>
+						<a class="text-decoration-none" href="{{ path('sort_name_desc')}}">
+							<img src="{{asset('images/down.jpg') }}" width="20" height="20">
+						</a>
+					</th>
+					<th>Image</th>
+					<th>Gender</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% set a =0 %}
+				{% for studentmanager in studentmanagers %}
+					<tr>
+					{% set a =a+1 %}
+						<td>{{ studentmanager.id }}</td>
+						<td>
+							<a href="{{ path ('studentmanager_detail', {'id' : studentmanager.id })}}">
+								{{ studentmanager.Name }}</a>
+						</td>
+						<td>
+                
+                <img src="{{ studentmanager.image}}" width="100" height="100">
+                		</td>
+
+						<td>{{ studentmanager.Gender }}</td>
+						<td>
+							<a href="{{ path ('studentmanager_edit', {'id' : studentmanager.id })}}{" class="btn btn-warning">Edit</a>
+							<a href="{{ path ('studentmanager_delete', {'id' : studentmanager.id })}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this book ?');">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<h1>{{a}}</h1>
+	{% endblock %}
